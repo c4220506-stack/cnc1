@@ -12,4 +12,8 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // This tells the application it is being hosted inside your repository subfolder
+    base: '/220506-stack/',
+  }
 });
