@@ -20,7 +20,56 @@ const IMAGES = [
   `${REPO}/Cnc5.png`,
   `${REPO}/Hero.jpg`,
 ];
+const STACK_A = [
+  `${REPO}/Cnc-sheet-metal-cutting-services-in-ahmedabad.jpg`,
+  `${REPO}/high-precision-laser-cutting-machine.webp`,
+];
+const STACK_B = [
+  `${REPO}/2-min-1.jpg`,
+  `${REPO}/mechanical-parts-laser-cutting-services-500x500.png`,
+  `${REPO}/metal-cutting-services.jpg`,
+];
 const WHATSAPP = "https://wa.me/919999999999";
+
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setShown(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return { ref, shown };
+}
+
+function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const { ref, shown } = useReveal<HTMLDivElement>();
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: shown ? 1 : 0,
+        transform: shown ? "translateY(0)" : "translateY(32px)",
+        transition: `opacity 900ms ease-out ${delay}ms, transform 900ms ease-out ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 function WhatsAppIcon({ size = 26 }: { size?: number }) {
   return (
