@@ -223,54 +223,6 @@ function Index() {
         </div>
       </section>
 
-      {/* CAPABILITIES */}
-      <section className="bg-card px-6 py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-16 max-w-2xl">
-            <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
-              Capabilities
-            </p>
-            <h2 className="text-4xl font-light leading-tight sm:text-5xl">
-              Materials we <span className="italic">master</span>.
-            </h2>
-          </div>
-
-          <div className="grid gap-12 sm:gap-16 md:grid-cols-3">
-            {[
-              {
-                n: "01",
-                t: "Mild Steel (MS)",
-                d: "High-speed precision cutting engineered for industrial applications and structural work.",
-              },
-              {
-                n: "02",
-                t: "Stainless Steel (SS)",
-                d: "Clean, burr-free edges for architectural, decorative and food-grade fabrication.",
-              },
-              {
-                n: "03",
-                t: "Aluminum & Exotic Metals",
-                d: "Specialty cutting for Brass, Copper and aluminium alloys with fine tolerance control.",
-              },
-            ].map((c) => (
-              <div key={c.n} className="border-t border-border pt-8">
-                <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
-                  {c.n}
-                </div>
-                <h3 className="mt-6 text-2xl font-light sm:text-3xl">{c.t}</h3>
-                <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-muted-foreground">
-                  {c.d}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mx-auto mt-20 max-w-2xl text-center text-xs font-light uppercase tracking-[0.3em] text-muted-foreground">
-            Equipped with high-power fiber laser technology for extreme precision and minimal tolerance.
-          </p>
-        </div>
-      </section>
-
       {/* STACKED SHOWCASE */}
       <section className="bg-background px-6 py-24 sm:py-32">
         <div className="mx-auto max-w-6xl space-y-32 sm:space-y-40">
@@ -359,6 +311,54 @@ function Index() {
               <div className="mt-8 h-px w-12 bg-olive/60" />
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* CAPABILITIES */}
+      <section className="bg-card px-6 py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-16 max-w-2xl">
+            <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
+              Capabilities
+            </p>
+            <h2 className="text-4xl font-light leading-tight sm:text-5xl">
+              Materials we <span className="italic">master</span>.
+            </h2>
+          </div>
+
+          <div className="grid gap-12 sm:gap-16 md:grid-cols-3">
+            {[
+              {
+                n: "01",
+                t: "Mild Steel (MS)",
+                d: "High-speed precision cutting engineered for industrial applications and structural work.",
+              },
+              {
+                n: "02",
+                t: "Stainless Steel (SS)",
+                d: "Clean, burr-free edges for architectural, decorative and food-grade fabrication.",
+              },
+              {
+                n: "03",
+                t: "Aluminum & Exotic Metals",
+                d: "Specialty cutting for Brass, Copper and aluminium alloys with fine tolerance control.",
+              },
+            ].map((c) => (
+              <div key={c.n} className="border-t border-border pt-8">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+                  {c.n}
+                </div>
+                <h3 className="mt-6 text-2xl font-light sm:text-3xl">{c.t}</h3>
+                <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-muted-foreground">
+                  {c.d}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-20 max-w-2xl text-center text-xs font-light uppercase tracking-[0.3em] text-muted-foreground">
+            Equipped with high-power fiber laser technology for extreme precision and minimal tolerance.
+          </p>
         </div>
       </section>
 
