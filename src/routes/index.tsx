@@ -54,7 +54,7 @@ function useReveal<T extends HTMLElement>() {
   return { ref, shown };
 }
 
-function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const { ref, shown } = useReveal<HTMLDivElement>();
   return (
     <div
