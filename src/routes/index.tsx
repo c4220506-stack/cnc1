@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Instagram, Facebook, Linkedin, MessageCircle, ChevronLeft, ChevronRight, MapPin, Mail, Phone } from "lucide-react";
+import { Instagram, Facebook, Linkedin, ChevronLeft, ChevronRight, MapPin, Mail, Phone } from "lucide-react";
 import { toast } from "sonner";
 import { Toaster } from "sonner";
 
@@ -21,6 +21,14 @@ const IMAGES = [
   `${REPO}/Hero.jpg`,
 ];
 const WHATSAPP = "https://wa.me/919999999999";
+
+function WhatsAppIcon({ size = 26 }: { size?: number }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={size} height={size} fill="currentColor" aria-hidden="true">
+      <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.244-.688.244-1.045 0-.058 0-.144-.03-.215-.1-.172-2.434-1.233-2.678-1.433zm-2.908 7.593c-1.747 0-3.48-.53-4.942-1.49L7.793 24.41l1.132-3.35a8.98 8.98 0 0 1-1.72-5.284c0-4.955 4.04-8.995 8.997-8.995S25.2 10.82 25.2 15.776c0 4.958-4.04 8.998-8.998 8.998zm0-19.798c-5.96 0-10.8 4.842-10.8 10.8 0 1.964.53 3.898 1.55 5.574L5 27.176l5.974-1.548a10.71 10.71 0 0 0 5.228 1.34c5.96 0 10.8-4.842 10.8-10.8s-4.84-10.8-10.8-10.8z"/>
+    </svg>
+  );
+}
 
 function Index() {
   const [showWA, setShowWA] = useState(false);
@@ -58,7 +66,7 @@ function Index() {
       <section className="relative h-screen w-full overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ filter: "blur(6px)", transform: "scale(1.08)" }}
+          style={{ filter: "blur(3px)", transform: "scale(1.05)" }}
           src={VIDEO}
           autoPlay
           loop
@@ -120,52 +128,163 @@ function Index() {
               </p>
               <h2 className="text-4xl font-light sm:text-5xl">Recent Work</h2>
             </div>
-            <div className="hidden gap-2 sm:flex">
-              <button
-                onClick={() => emblaApi?.scrollPrev()}
-                className="flex h-11 w-11 items-center justify-center border border-border transition-colors hover:bg-foreground hover:text-background"
-                aria-label="Previous"
-              >
-                <ChevronLeft size={16} />
-              </button>
-              <button
-                onClick={() => emblaApi?.scrollNext()}
-                className="flex h-11 w-11 items-center justify-center border border-border transition-colors hover:bg-foreground hover:text-background"
-                aria-label="Next"
-              >
-                <ChevronRight size={16} />
-              </button>
-            </div>
           </div>
 
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-4">
-              {IMAGES.map((src, i) => (
-                <div
-                  key={i}
-                  className="relative min-w-0 shrink-0 grow-0 basis-[85%] sm:basis-[60%] lg:basis-[45%]"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-muted">
-                    <img
-                      src={src}
-                      alt={`CNC precision cut ${i + 1}`}
-                      className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
-                      loading="lazy"
-                      draggable={false}
-                    />
+          <div className="group/carousel relative">
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex gap-4">
+                {IMAGES.map((src, i) => (
+                  <div
+                    key={i}
+                    className="relative min-w-0 shrink-0 grow-0 basis-[85%] sm:basis-[60%] lg:basis-[45%]"
+                  >
+                    <div className="group/image aspect-[4/3] overflow-hidden bg-muted">
+                      <img
+                        src={src}
+                        alt={`CNC precision cut ${i + 1}`}
+                        className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover/image:scale-[1.04]"
+                        loading="lazy"
+                        draggable={false}
+                      />
+                    </div>
+                    <p className="mt-3 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                      Piece No. {String(i + 1).padStart(2, "0")}
+                    </p>
                   </div>
-                  <p className="mt-3 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                    Piece No. {String(i + 1).padStart(2, "0")}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            {/* Elegant hover arrows */}
+            <button
+              onClick={() => emblaApi?.scrollPrev()}
+              aria-label="Previous"
+              className="absolute left-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-foreground/20 bg-background/70 text-foreground opacity-0 backdrop-blur-sm transition-all duration-500 hover:bg-foreground hover:text-background group-hover/carousel:left-4 group-hover/carousel:opacity-100 sm:h-14 sm:w-14"
+            >
+              <ChevronLeft size={18} strokeWidth={1.25} />
+            </button>
+            <button
+              onClick={() => emblaApi?.scrollNext()}
+              aria-label="Next"
+              className="absolute right-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-foreground/20 bg-background/70 text-foreground opacity-0 backdrop-blur-sm transition-all duration-500 hover:bg-foreground hover:text-background group-hover/carousel:right-4 group-hover/carousel:opacity-100 sm:h-14 sm:w-14"
+            >
+              <ChevronRight size={18} strokeWidth={1.25} />
+            </button>
           </div>
         </div>
       </section>
 
+      {/* CAPABILITIES */}
+      <section className="bg-card px-6 py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-16 max-w-2xl">
+            <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
+              Capabilities
+            </p>
+            <h2 className="text-4xl font-light leading-tight sm:text-5xl">
+              Materials we <span className="italic">master</span>.
+            </h2>
+          </div>
+
+          <div className="grid gap-12 sm:gap-16 md:grid-cols-3">
+            {[
+              {
+                n: "01",
+                t: "Mild Steel (MS)",
+                d: "High-speed precision cutting engineered for industrial applications and structural work.",
+              },
+              {
+                n: "02",
+                t: "Stainless Steel (SS)",
+                d: "Clean, burr-free edges for architectural, decorative and food-grade fabrication.",
+              },
+              {
+                n: "03",
+                t: "Aluminum & Exotic Metals",
+                d: "Specialty cutting for Brass, Copper and aluminium alloys with fine tolerance control.",
+              },
+            ].map((c) => (
+              <div key={c.n} className="border-t border-border pt-8">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+                  {c.n}
+                </div>
+                <h3 className="mt-6 text-2xl font-light sm:text-3xl">{c.t}</h3>
+                <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-muted-foreground">
+                  {c.d}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-20 max-w-2xl text-center text-xs font-light uppercase tracking-[0.3em] text-muted-foreground">
+            Equipped with high-power fiber laser technology for extreme precision and minimal tolerance.
+          </p>
+        </div>
+      </section>
+
+      {/* PROCESS TIMELINE */}
+      <section className="bg-background px-6 py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
+              The Process
+            </p>
+            <h2 className="text-4xl font-light sm:text-5xl">How We Work</h2>
+          </div>
+
+          <div className="relative grid gap-12 md:grid-cols-3 md:gap-8">
+            <div className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-border md:block" />
+            {[
+              {
+                n: "I",
+                t: "Design Submission",
+                d: "Share your CAD / DXF files or drawings via our form or WhatsApp.",
+              },
+              {
+                n: "II",
+                t: "Precision Execution",
+                d: "High-fidelity CNC laser cutting engineered at our Nagpur hub.",
+              },
+              {
+                n: "III",
+                t: "Nationwide Logistics",
+                d: "Secure, industrial-grade wooden crate packaging with tracked shipping to any state across India.",
+              },
+            ].map((s) => (
+              <div key={s.n} className="relative flex flex-col items-center text-center md:items-start md:text-left">
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-foreground/30 bg-background font-display text-lg italic">
+                  {s.n}
+                </div>
+                <h3 className="mt-8 text-xl font-light sm:text-2xl">{s.t}</h3>
+                <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-muted-foreground">
+                  {s.d}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STRATEGIC ADVANTAGE */}
+      <section className="bg-card px-6 py-24 sm:py-32">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
+            Strategic Advantage
+          </p>
+          <h2 className="text-balance text-4xl font-light leading-tight sm:text-5xl">
+            Centrally Located for <span className="italic">Fast Delivery</span>.
+          </h2>
+          <p className="mx-auto mt-8 max-w-xl text-base font-light leading-relaxed text-muted-foreground">
+            Operating from Nagpur — the geographical heart of India — allows us to optimize
+            shipping routes, reducing transit times and logistics costs to Northern,
+            Southern, Eastern and Western states alike.
+          </p>
+          <div className="mx-auto mt-12 h-px w-16 bg-border" />
+        </div>
+      </section>
+
       {/* SPECS */}
-      <section className="bg-card px-6 py-24">
+      <section className="bg-background px-6 py-24">
         <div className="mx-auto grid max-w-5xl gap-12 sm:grid-cols-3">
           {[
             { k: "0.1mm", v: "Cutting tolerance" },
@@ -183,7 +302,8 @@ function Index() {
       </section>
 
       {/* INQUIRY */}
-      <section id="inquiry" className="bg-background px-6 py-24 sm:py-32">
+      <section id="inquiry" className="relative bg-card px-6 py-24 sm:py-32">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-olive/40 to-transparent" />
         <div className="mx-auto grid max-w-5xl gap-16 lg:grid-cols-2">
           <div>
             <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
@@ -286,11 +406,12 @@ function Index() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-olive text-olive-foreground shadow-2xl transition-all duration-500 hover:scale-110 ${
+        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-2xl transition-all duration-500 hover:scale-110 ${
           showWA ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-8 opacity-0"
         }`}
+        style={{ backgroundColor: "#25D366", color: "#ffffff" }}
       >
-        <MessageCircle size={24} />
+        <WhatsAppIcon size={28} />
       </a>
     </div>
   );
