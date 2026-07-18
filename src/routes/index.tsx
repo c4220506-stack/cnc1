@@ -271,6 +271,97 @@ function Index() {
         </div>
       </section>
 
+      {/* STACKED SHOWCASE */}
+      <section className="bg-background px-6 py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl space-y-32 sm:space-y-40">
+          {/* Cluster 1: 2-image cascade */}
+          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+            <Reveal>
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
+                Precision Craft
+              </p>
+              <h3 className="text-balance text-3xl font-light leading-tight sm:text-4xl md:text-5xl">
+                Advanced CNC <span className="italic">plate</span> expertise.
+              </h3>
+              <p className="mt-6 max-w-md text-base font-light leading-relaxed text-muted-foreground">
+                Engineered edge quality on every millimeter — our fiber laser platforms
+                deliver mirror-clean cuts, tight kerf control and repeatable tolerances
+                across mild steel, stainless and specialty alloys.
+              </p>
+              <div className="mt-8 h-px w-12 bg-olive/60" />
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div className="relative h-[420px] w-full sm:h-[500px]">
+                <div className="absolute left-0 top-0 h-[70%] w-[75%] overflow-hidden shadow-xl">
+                  <img
+                    src={STACK_A[0]}
+                    alt="Sheet metal CNC cutting"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute bottom-0 right-0 h-[65%] w-[70%] overflow-hidden shadow-2xl ring-1 ring-background">
+                  <img
+                    src={STACK_A[1]}
+                    alt="High precision laser cutting machine"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Cluster 2: 3-image cascade */}
+          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+            <Reveal delay={120} className="order-2 md:order-1">
+              <div className="relative h-[560px] w-full sm:h-[640px]">
+                <div className="absolute left-0 top-0 h-[42%] w-[62%] overflow-hidden shadow-xl">
+                  <img
+                    src={STACK_B[0]}
+                    alt="Industrial laser cutting"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute left-[18%] top-[28%] h-[42%] w-[62%] overflow-hidden shadow-2xl ring-1 ring-background">
+                  <img
+                    src={STACK_B[1]}
+                    alt="Mechanical parts laser cutting"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute right-0 bottom-0 h-[42%] w-[62%] overflow-hidden shadow-2xl ring-1 ring-background">
+                  <img
+                    src={STACK_B[2]}
+                    alt="Metal cutting services"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal className="order-1 md:order-2">
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
+                Industrial Capacity
+              </p>
+              <h3 className="text-balance text-3xl font-light leading-tight sm:text-4xl md:text-5xl">
+                Heavy structural <span className="italic">execution</span>.
+              </h3>
+              <p className="mt-6 max-w-md text-base font-light leading-relaxed text-muted-foreground">
+                From high-volume production runs to load-bearing structural components,
+                our facility handles thick-plate cutting with the same discipline we
+                bring to fine detail work — reliable, on-schedule, dispatched nationwide.
+              </p>
+              <div className="mt-8 h-px w-12 bg-olive/60" />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* PROCESS TIMELINE */}
       <section className="bg-background px-6 py-24 sm:py-32">
         <div className="mx-auto max-w-6xl">
